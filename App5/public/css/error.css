@@ -1,0 +1,55 @@
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+    text-align: center;
+}
+
+h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    animation: glitchBounce 0.5s infinite alternate, colorChange 2s infinite alternate;
+}
+
+
+@keyframes glitchBounce {
+    0% {
+        transform: translateY(0) scale(1);
+    }
+
+    50% {
+        transform: translateY(-8px) scale(1.05);
+    }
+
+    100% {
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes colorChange {
+    0% {
+        color: red;
+        text-shadow: 2px 2px 5px rgba(255, 0, 0, 0.5);
+    }
+
+    25% {
+        color: orange;
+        text-shadow: 2px 2px 5px rgba(255, 165, 0, 0.5);
+    }
+
+    50% {
+        color: yellow;
+        text-shadow: 2px 2px 5px rgba(255, 255, 0, 0.5);
+    }
+
+    75% {
+        color: lightblue;
+        text-shadow: 2px 2px 5px rgba(173, 216, 230, 0.5);
+    }
+
+    100% {
+        color: red;
+        text-shadow: 2px 2px 5px rgba(255, 0, 0, 0.5);
+    }
+}

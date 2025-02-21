@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const CartModel = require('./cart-model')
 const p = path.join(
     path.dirname(process.mainModule.filename),
     'data',
@@ -21,12 +22,12 @@ Note:
 */
 
 module.exports = class ProductModel {
-    constructor(id, titleProd, imageURL, description, price) {
+    constructor(id, titleProd, imageURL, price, description) {
         this.id = id;
         this.title = titleProd;
         this.imageURL = imageURL;
-        this.description = description;
         this.price = price;
+        this.description = description;
     }
     /*
     Note: 
@@ -39,7 +40,7 @@ module.exports = class ProductModel {
                 const exisitingProductIndex = products.findIndex(prod => prod.id === this.id);
                 const updatedProducts = [...products];
                 updatedProducts[exisitingProductIndex] = this;
-                fs.writeFile(p, JSON.stringify(products), (err) => {
+                fs.writeFile(p, JSON.stringify(updatedProducts), (err) => {
                     console.log(err);
                 });
             } else {
@@ -55,6 +56,32 @@ module.exports = class ProductModel {
     Note: 
     It calls the getProductsFromFile() to fetch exisiting products, also it adds the new product (this) to the list, also it saves the updated list to the product-data.json. And is used in admin-controller.js when a product is submitted => product.save()
     */
+
+    static deleteById(id) {
+        getProductsFromFile((products) => {
+            // const product = products.find(prod => prod.id === id);
+            // const updatedProducts = products.filter(prod => prod.id === id);
+            
+            // Find the product to delete
+            const product = products.find(prod => prod.id === id);
+
+            // If product is not found, return early
+            if (!product) {
+                console.log(`Product with ID ${id} not found.`);
+                return;
+            }
+
+            // Correct filtering condition: Remove the product with the given ID
+            const updatedProducts = products.filter(prod => prod.id !== id);
+           
+            fs.writeFile(p, JSON.stringify(updatedProducts), (err) => {
+                if (!err) {
+                    CartModel.deleteProduct(id, product.price);
+                }
+            });
+        });
+    }
+
     static fetchAll(cb) {
         getProductsFromFile(cb)
     }

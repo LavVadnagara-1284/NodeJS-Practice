@@ -18,7 +18,7 @@ exports.postAddProduct = (req, res, next) => {
     const imageURL = req.body.imageURL;
     const price = req.body.price;
     const description = req.body.description;
-    const product = new ProductModel(null, title, imageURL, description, price);
+    const product = new ProductModel(null, title, imageURL, price, description);
     product.save();
     res.redirect('/');
 };
@@ -75,3 +75,9 @@ Note:
 -> This function calls the ProductModel.fetchAll(callback), which retrieves all the products, Also this will render the views (folder) > admin (folder) > product-list-admin.ejs, by passing the prods: which is this list of products, pageTitle: which is this title of the page, path: which is the browser path to the /admin/product-list-admin
 -> this is called from the routes (folder) > admin.js => router.get('/products', adminController.getProducts), when a user visits /admin/products, this function fetches all products and displays them in an admin product list.
 */
+
+exports.postDeleteProduct = (req, res, next) => {
+    const prodId = req.body.productId;
+    ProductModel.deleteById(prodId);
+    res.redirect('/admin/products');
+}

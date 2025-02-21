@@ -1,4 +1,4 @@
-.product-form {
+/* .product-form {
     width: 20rem;
     max-width: 90%;
     margin: auto;
@@ -13,7 +13,6 @@
 
 .product-title {
     border-bottom: 2px solid black;
-    /* font-size: 1.2rem; */
     text-align: center;
 }
 
@@ -27,4 +26,49 @@
     text-align: center;
     padding-bottom: 5px;
     border-bottom: 2px solid black;
+} */
+
+
+.product-form {
+    width: 20rem;
+    max-width: 90%;
+    margin: auto;
+    display: block;
+}
+
+.product-item {
+    width: 20rem;
+    max-width: 95%;
+    margin: 1rem;
+    padding: 1rem;
+    background: #b1c4e9;
+    /* Light blue background */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.product-title {
+    border-bottom: 2px solid #1c3d75;
+    /* Deep blue instead of black */
+    text-align: center;
+    font-weight: 600;
+    color: #1c3d75;
+    padding-bottom: 0.5rem;
+}
+
+.product-price {
+    text-align: center;
+    color: #4d4d4d;
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+.product-description {
+    text-align: center;
+    padding-bottom: 5px;
+    border-bottom: 2px solid #1c3d75;
+    /* Deep blue instead of black */
+    color: #333;
+    font-size: 0.95rem;
 }
